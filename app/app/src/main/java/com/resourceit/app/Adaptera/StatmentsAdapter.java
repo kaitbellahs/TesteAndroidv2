@@ -1,6 +1,8 @@
 package com.resourceit.app.Adaptera;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.resourceit.app.R;
@@ -14,24 +16,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class StatmentsAdapter extends RecyclerView.Adapter<StatmentHolder> {
 
-    private final List<StatmentModel> statments;
+    private List<StatmentModel> statments;
+    private final LayoutInflater mInflater;
 
-    public StatmentsAdapter(ArrayList statments) {
-        this.statments = statments;
+    public StatmentsAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public StatmentHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new StatmentHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.statment_item, parent, false));
+         View itemView = mInflater.inflate(R.layout.statment_item, parent, false);
+        return new StatmentHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(StatmentHolder holder, int position) {
-        holder.title.setText(statments.get(position).getTitle());
-        holder.desc.setText(statments.get(position).getDesc());
-        holder.date.setText(statments.get(position).getDate());
-        holder.value.setText("R$"+statments.get(position).getValue());
+        if (statments != null) {
+            StatmentModel current = statments.get(position);
+
+            holder.title.setText(current.getTitle());
+            holder.desc.setText(current.getDesc());
+            holder.date.setText(current.getDate());
+            holder.value.setText("R$"+current.getValue());
+        }
+    }
+
+    void setStatments(List<StatmentModel> statments){
+        this.statments = statments;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -39,9 +51,9 @@ public class StatmentsAdapter extends RecyclerView.Adapter<StatmentHolder> {
         return statments != null ? statments.size() : 0;
     }
 
-    public void insertItem(StatmentModel statment) {
-        statments.add(statment);
-        notifyItemInserted(getItemCount());
+    public void insertItem(List<StatmentModel> statments) {
+        this.statments = statments;
+        notifyDataSetChanged();
     }
 
 }

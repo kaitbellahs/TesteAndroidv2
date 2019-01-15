@@ -15,17 +15,16 @@ import com.resourceit.app.R;
 import com.resourceit.app.models.LoginModel;
 import com.resourceit.app.models.StatmentModel;
 import com.resourceit.app.tools.Validator;
+import com.resourceit.app.viewmodels.LoginViewModel;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginFragment extends Fragment {
 
@@ -36,13 +35,16 @@ public class LoginFragment extends Fragment {
     @BindView(R.id.password) TextView password;
     private MainActivity activity;
     private Boolean doLogin = false;
+    private LoginViewModel loginViewModel;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         activity = (MainActivity) getActivity();
-        
+        loginViewModel = activity.loginViewModel;
         return view;
     }
 
@@ -61,25 +63,14 @@ public class LoginFragment extends Fragment {
             if(doLogin){
                 hideKeyboard();
                 activity.Loading(true);
-                Call<LoginModel> statments = activity.API.DoLogin(user.getText().toString(), password.getText().toString());
-                final Gson gson = new Gson();
-
-                statments.enqueue(new Callback<LoginModel>() {
+                loginViewModel.DoLogin(user.getText().toString(), password.getText().toString())
+                        .observe(this, new Observer<LoginModel>() {
                     @Override
-                    public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-                        LoginModel login = response.body();
-                        Log.w("login:sucess:: ", gson.toJson(login.getUserAccount()));
-                        activity.loginDao.insertAll(login.getUserAccount());
-                        Log.w("login:sucess:db: ", gson.toJson(activity.loginDao.findById(1)));
-                        activity.updateFragment(new StatementsFragment(), "STATMENTS");
-                        activity.Loading(false);
-                    }
-
-                    @Override
-                    public void onFailure(Call<LoginModel> call, Throwable t) {
-                        Log.w("login:error:: ", t.toString());
-                        activity.Loading(false);
-                        doLogin = false;
+                    public void onChanged(@Nullable final LoginModel login) {
+                        if(login!=null) {
+                            activity.updateFragment(new StatementsFragment(), "STATMENTS");
+                            doLogin = false;
+                        }
                     }
                 });
             }

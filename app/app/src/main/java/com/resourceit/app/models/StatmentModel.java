@@ -2,9 +2,11 @@ package com.resourceit.app.models;
 
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+
 public class StatmentModel {
 
-    private List<StatmentModel > statementList;
+    private List<StatmentModel> statementList;
     private String title;
     private String desc;
     private String date;

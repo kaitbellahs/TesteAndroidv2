@@ -36,7 +36,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/textcolorhint"
             android:textSize="15sp"
-            android:text=""/>
+            android:text="ss@ss.ss"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +61,7 @@
             android:inputType="textPassword"
             android:textColor="@color/textcolorhint"
             android:textSize="15sp"
-            android:text=""/>
+            android:text="aaAA11@@"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

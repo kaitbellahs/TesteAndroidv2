@@ -7,12 +7,15 @@ import com.resourceit.app.R;
 import com.resourceit.app.dao.LoginDao;
 import com.resourceit.app.interfaces.APIService;
 import com.resourceit.app.tools.AppDatabase;
+import com.resourceit.app.viewmodels.LoginViewModel;
+import com.resourceit.app.viewmodels.StatmentsViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public APIService API;
     private AppDatabase db;
     public LoginDao loginDao;
+    public LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         updateFragment(new LoginFragment(), "LOGIN");
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://bank-app-test.herokuapp.com/api/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "santander").allowMainThreadQueries().build();
         loginDao = db.loginDao();
-        API = retrofit.create(APIService.class);
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
     }
 
 
