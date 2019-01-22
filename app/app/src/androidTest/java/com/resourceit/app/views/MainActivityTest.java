@@ -53,81 +53,129 @@ public class MainActivityTest {
 
     @Test
     public void Test_Cpf_E_Senha_Valido(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar CPF Valido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(cpfValido));
+        // Digitar Senha Valida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaValida));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        //Clicar no botão login
         onView(withId(R.id.login)).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(15))).check(matches(isDisplayed()));
     }
 
     @Test
     public void Test_Email_E_Senha_Valido(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar Email Valido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(EmailValido));
+        // Digitar Senha Valida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaValida));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        //Clicar no botão login
         onView(withId(R.id.login)).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(15))).check(matches(isDisplayed()));
     }
 
     @Test
     public void Test_Cpf_InValido(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar CPF inValido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(cpfInValido));
+        // Digitar Senha Valida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaValida));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        //Clicar no botão login
         onView(withId(R.id.login)).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(5))).check(matches(not(doesNotExist())));
     }
 
     @Test
     public void Test_Email_InValido(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar Email inValido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(EmailInValido));
+        // Digitar Senha Valida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaValida));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        // Esperar 5 sec e Clicar no botão login
         onView(isRoot()).perform(waitId(R.id.login, TimeUnit.SECONDS.toMillis(5))).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(5))).check(matches(not(doesNotExist())));
     }
 
     @Test
     public void Test_Senha_InValido_01(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar CPF Valido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(cpfValido));
+        // Digitar Senha inValida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaInValida1));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        // Esperar 5 sec e Clicar no botão login
         onView(isRoot()).perform(waitId(R.id.login, TimeUnit.SECONDS.toMillis(5))).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(5))).check(matches(not(doesNotExist())));
     }
 
     @Test
     public void Test_Senha_InValido_02(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar CPF Valido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(cpfValido));
+        // Digitar Senha inValida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaInValida2));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        // Esperar 5 sec e Clicar no botão login
         onView(isRoot()).perform(waitId(R.id.login, TimeUnit.SECONDS.toMillis(5))).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(5))).check(matches(not(doesNotExist())));
     }
 
     @Test
     public void Test_Senha_InValido_03(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar CPF Valido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(cpfValido));
+        // Digitar Senha inValida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaInValida3));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        // Esperar 5 sec e Clicar no botão login
         onView(isRoot()).perform(waitId(R.id.login, TimeUnit.SECONDS.toMillis(5))).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(5))).check(matches(not(doesNotExist())));
     }
 
     @Test
     public void Test_Senha_InValido_04(){
+        // Checar se a tela do login esta aparecendo para usuario
         onView(withId(R.id.loginLaout)).check(matches(isDisplayed()));
+        // Digitar CPF Valido no Campo usuario
         onView(withId(R.id.user)).perform(replaceText("")).perform(typeText(cpfValido));
+        // Digitar Senha inValida no Campo Senha
         onView(withId(R.id.password)).perform(replaceText("")).perform(typeText(SenhaInValida4));
+        //Esconder o teclado virtul do Android
         Espresso.closeSoftKeyboard();
+        // Esperar 5 sec e Clicar no botão login
         onView(isRoot()).perform(waitId(R.id.login, TimeUnit.SECONDS.toMillis(5))).perform(click());
+        // Esperar 5 sec e checar se a tela de transasoes esta aparecendo para usuario
         onView(isRoot()).perform(waitId(R.id.statmentsLayout, TimeUnit.SECONDS.toMillis(5))).check(matches(not(doesNotExist())));
     }
 
