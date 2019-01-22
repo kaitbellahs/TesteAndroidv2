@@ -8,7 +8,6 @@ import com.resourceit.app.dao.LoginDao;
 import com.resourceit.app.interfaces.APIService;
 import com.resourceit.app.tools.AppDatabase;
 import com.resourceit.app.viewmodels.LoginViewModel;
-import com.resourceit.app.viewmodels.StatmentsViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,8 +18,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
